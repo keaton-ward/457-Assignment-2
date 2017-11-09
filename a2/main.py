@@ -69,11 +69,9 @@ root.withdraw()
 #
 # You may use this code in your own forwardFT() and backwardFT() functions.
 
-
 def ft1D( signal ):
 
   return np.fft.fft( signal )
-
 
 # Do a forward FT
 #
@@ -85,10 +83,26 @@ def forwardFT( image ):
   # YOUR CODE HERE
   #
   # You must replace this code with your own, keeping the same function name are parameters.
-  
-  return np.fft.fft2( image )
+  # return np.fft.fft2( image )
 
+  size = image.shape
+  yDim = size[0]
+  xDim = size[1]
+  tempArray = []
 
+  resultImage = np.zeros((yDim,xDim))
+
+  for i in range(yDim):
+    tempArray = image[i]
+    tempArray = ft1D(tempArray)
+    resultImage[i] = tempArray
+
+  for j in range(xDim):
+    tempArray = resultImage[:,j]
+    tempArray = ft1D(tempArray)
+    resultImage[:,j] = tempArray
+
+  return resultImage
 
 # Do an inverse FT
 #
