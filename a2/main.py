@@ -116,7 +116,18 @@ def inverseFT( image ):
   #
   # You must replace this code with your own, keeping the same function name are parameters.
   
+  
   return np.fft.ifft2( image )
+
+def inverseft1D(signal,N):
+    
+    signal.conjugate()
+    ft1D(signal)
+    result = [x * (1/N) for x in signal]
+    result.conjugate()
+    
+    return result
+
 
 
 
